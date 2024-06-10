@@ -1,6 +1,5 @@
 "use client";
 import { updateTask } from '@/app/redux/features/tasksSlice';
-import { RootState } from '@/app/redux/store';
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -9,7 +8,7 @@ import { FilePlus2 } from 'lucide-react';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-// import { Button } from "@/components/ui/button"
+
 
 interface Task{
     id: number,

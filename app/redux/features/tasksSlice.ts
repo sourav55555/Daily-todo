@@ -21,7 +21,6 @@ const tasksSlice = createSlice({
     initialState,
     reducers: {
         addTask: (state, {payload})=>{
-            console.log(payload);
             state.tasks.push(payload);
             localStorage.setItem("todo", JSON.stringify(state.tasks))
         },
@@ -35,9 +34,8 @@ const tasksSlice = createSlice({
             localStorage.setItem("todo", JSON.stringify(state.tasks))
         },
         updateStatus: (state, {payload})=>{
-            let updateIndex = state.tasks.findIndex((data: Task) => data.id == payload);
+              let updateIndex = state.tasks.findIndex((data: Task) => data.id == payload);
               state.tasks[updateIndex].status = "Completed"
-              console.log(state.tasks[updateIndex]);
               localStorage.setItem("todo", JSON.stringify(state.tasks))
         }
     }

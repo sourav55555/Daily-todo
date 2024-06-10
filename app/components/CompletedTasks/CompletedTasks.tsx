@@ -40,16 +40,20 @@ const CompletedTasks = () => {
     return (
         <div>
             <p className='pt-14 text-center text-2xl font-semibold'>Completed Tasks</p>
+
             <div className='w-[80%] mx-auto mt-8 space-y-5'>
                 {
-                    completTasks.map((data: Task) => <div className='flex items-center gap-2 justify-between text-sm'>
+                    completTasks.map((data: Task) => <div key={data.id} className='flex items-center gap-2 justify-between text-sm'>
                         <Check className='w-4 text-green-600' />
                         <p className='flex-1'>{data.title}</p>
-                        <Trash onClick={() => deleteTask(data.id)} className='w-4 text-red-500 cursor-pointer'/>
-                    </div> )
+                        <Trash
+                            onClick={() => deleteTask(data.id)}
+                            className='w-4 text-red-500 cursor-pointer'
+                        />
+                    </div>)
                 }
             </div>
-            <Toaster/>
+            <Toaster />
         </div>
     );
 };

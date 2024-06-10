@@ -18,16 +18,16 @@ export default function Home() {
           <div className="border-r w-full md:w-[75%]">
             <div className="px-8 pt-16">
               <h2 className="text-4xl font-semibold">Create or maintain your daily to-do with this simple website.</h2>
-              
-              <AddTask/>
+
+              <AddTask />
             </div>
 
             <div>
-              <AllTasks/>
+              <AllTasks />
             </div>
           </div>
           <div className="md:w-[25%] w-full">
-            <CompletedTasks/>
+            <CompletedTasks />
           </div>
         </div>
         <footer className="h-44 w-full px-8 flex items-center flex-col justify-center bg-teal-600 gap-2 text-white mt-20">

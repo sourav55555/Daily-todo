@@ -9,7 +9,7 @@ import { FilePlus2 } from 'lucide-react';
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-// import { Button } from "@/components/ui/button"
+
 
 const AddTask = () => {
 
@@ -27,9 +27,6 @@ const AddTask = () => {
         }
         if (details.trim() == ""){
             return toast.error("Task details can't be empty.")
-        }
-        if(allTasks.length == 0){
-            let id = 1
         }
         const taskData = {
             id: allTasks.length == 0 ? 1 : allTasks.at(-1).id + 1,
@@ -54,6 +51,7 @@ const AddTask = () => {
                         <FilePlus2 />
                     </button>
                 </DialogTrigger>
+                
                 <DialogContent className="sm:max-w-[450px]">
                     <DialogHeader>
                         <DialogTitle>Add A New Task</DialogTitle>

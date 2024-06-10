@@ -31,7 +31,6 @@ const AllTasks = () => {
 
     useEffect(() => {
         const totalPages = Math.ceil(allTasks.length / tasksPerPage);
-
         const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
         setPages(pageNumbers);
         setStartIndex(currentPage * tasksPerPage - tasksPerPage);
@@ -39,7 +38,9 @@ const AllTasks = () => {
 
     }, [currentPage, allTasks])
 
+
     const deleteTask = (id: number) => {
+
         Swal.fire({
             title: "Confirm Delete?",
             icon: "warning",
@@ -56,7 +57,9 @@ const AllTasks = () => {
 
     }
 
+
     const handleStatus = (id: number) => {
+
         Swal.fire({
             title: "Completed the task?",
             icon: "warning",
@@ -77,9 +80,18 @@ const AllTasks = () => {
     return (
         <div>
             <div className="flex items-center justify-center gap-1 mt-20 py-6">
-                <Image src="/checklist.gif" alt="task list" className="h-16 w-16" width={100} height={60} unoptimized />
+                <Image
+                    src="/checklist.gif"
+                    alt="task list"
+                    className="h-16 w-16"
+                    width={100}
+                    height={60}
+                    unoptimized
+                />
                 <p className="text-3xl font-semibold border-b border-teal-400">All Tasks</p>
             </div>
+
+            {/* all tasks list  */}
 
             {allTasks.length === 0 && <p className="text-center">No tasks added.</p>}
 
@@ -87,7 +99,10 @@ const AllTasks = () => {
 
                 {
                     allTasks.slice(startIndex, endIndex).map((data: Task) =>
-                        <div key={data.id} className="p-5 bg-[rgba(0,0,0,.15)] flex flex-col gap-4 justify-between rounded-xl shadow-md hover:bg-teal-50 hover:shadow-lg transition-all duration-500 ease-out">
+                        <div
+                            key={data.id}
+                            className="p-5 bg-[rgba(0,0,0,.15)] flex flex-col gap-4 justify-between rounded-xl shadow-md hover:bg-teal-50 hover:shadow-lg transition-all duration-500 ease-out"
+                        >
                             <div>
                                 <h3 className="text-xl font-semibold mb-3 text-teal-700">{data.title}</h3>
                                 <p>{data.details}</p>
@@ -114,6 +129,7 @@ const AllTasks = () => {
                                 >
                                     Delete
                                 </button>
+
                             </div>
                         </div>
                     )
@@ -121,6 +137,7 @@ const AllTasks = () => {
             </div>
 
 
+            {/* pagination  */}
             <div className="flex items-center justify-center gap-3 pt-12 pb-4">
                 <button
                     className="px-2 py-1 rounded-lg bg-slate-100 me-2 disabled:opacity-30"
