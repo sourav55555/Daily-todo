@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Swal from 'sweetalert2'
 import toast, { Toaster } from "react-hot-toast";
 import EditTask from "../EditTask/EditTask";
+import useGetTasks from "@/app/hooks/useGetTasks";
 
 interface Task {
     id: number,
@@ -17,6 +18,7 @@ interface Task {
 }
 
 const AllTasks = () => {
+    const [loading] = useGetTasks();
 
     const allTasks = useSelector((state: RootState) => state.toDo.tasks);
     const dispatch = useDispatch();
@@ -92,8 +94,12 @@ const AllTasks = () => {
             </div>
 
             {/* all tasks list  */}
+            {loading ?
+                <p className="text-2xl font-semibold text-slate-700 text-center">Loading . . .</p>
+                :
+                 allTasks.length === 0 && <p className="text-center">No tasks added.</p> 
+            }
 
-            {allTasks.length === 0 && <p className="text-center">No tasks added.</p>}
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-10 md:px-4 mt-4">
 

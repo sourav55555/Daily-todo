@@ -5,6 +5,7 @@ import AllTasks from "./components/AllTasks/AllTasks";
 import CompletedTasks from "./components/CompletedTasks/CompletedTasks";
 
 export default function Home() {
+
   return (
     <main className="bg-slate-200">
       <div className="max-w-[1300px] bg-white mx-auto">

@@ -7,19 +7,23 @@ interface Task{
     details: string,
     status: string
 }
-    const loadInitialState = () => {
-        const getTasks = localStorage.getItem('todo');
-        return getTasks ? JSON.parse(getTasks) : [];
-    };
 
-    const initialState = {
-        tasks: loadInitialState()
+interface TasksState {
+    tasks: Task[];
+}
+
+
+    const initialState: TasksState = {
+        tasks: []
     }
 
 const tasksSlice = createSlice({
     name: "toDo",
     initialState,
     reducers: {
+        setTasks: (state, {payload})=>{
+            state.tasks = payload
+        },
         addTask: (state, {payload})=>{
             state.tasks.push(payload);
             localStorage.setItem("todo", JSON.stringify(state.tasks))
@@ -41,6 +45,6 @@ const tasksSlice = createSlice({
     }
 })
 
-export const {addTask, removeTask, updateTask, updateStatus} = tasksSlice.actions;
+export const {setTasks,addTask, removeTask, updateTask, updateStatus} = tasksSlice.actions;
 
 export default tasksSlice.reducer

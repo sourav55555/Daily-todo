@@ -1,4 +1,5 @@
 "use client";
+import useGetTasks from '@/app/hooks/useGetTasks';
 import { removeTask } from '@/app/redux/features/tasksSlice';
 import { RootState } from '@/app/redux/store';
 import { Check, Trash } from 'lucide-react';
@@ -15,9 +16,10 @@ interface Task {
 }
 
 const CompletedTasks = () => {
+    const [loading] =useGetTasks();
 
     const dispatch = useDispatch();
-    const completTasks = useSelector((state: RootState) => state.toDo.tasks).filter((data: Task) => data.status == "Completed");
+    const completeTasks = useSelector((state: RootState) => state.toDo.tasks).filter((data: Task) => data.status == "Completed");
 
 
     const deleteTask = (id: number) => {
@@ -41,9 +43,15 @@ const CompletedTasks = () => {
         <div>
             <p className='pt-14 text-center text-2xl font-semibold'>Completed Tasks</p>
 
+            {loading ?
+                <p className="text-lg mt-6 font-semibold text-slate-700 text-center">Loading . . .</p>
+                :
+                completeTasks.length === 0 && <p className="text-center mt-6">Please complete your tasks.</p> 
+            }
+
             <div className='w-[80%] mx-auto mt-8 space-y-5'>
                 {
-                    completTasks.map((data: Task) => <div key={data.id} className='flex items-center gap-2 justify-between text-sm'>
+                    completeTasks.map((data: Task) => <div key={data.id} className='flex items-center gap-2 justify-between text-sm'>
                         <Check className='w-4 text-green-600' />
                         <p className='flex-1'>{data.title}</p>
                         <Trash

@@ -1,5 +1,6 @@
 "use client";
-import { addTask } from '@/app/redux/features/tasksSlice';
+import useGetTasks from '@/app/hooks/useGetTasks';
+import { addTask, setTasks } from '@/app/redux/features/tasksSlice';
 import { RootState } from '@/app/redux/store';
 import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Input } from "@/components/ui/input"
@@ -12,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 const AddTask = () => {
+    useGetTasks();
 
     const [title, setTitle] = useState<string>("");
     const [details, setDetails] = useState<string>("");
@@ -28,8 +30,9 @@ const AddTask = () => {
         if (details.trim() == ""){
             return toast.error("Task details can't be empty.")
         }
+        const lastTask = allTasks.length > 0 ? allTasks.at(-1) : undefined;
         const taskData = {
-            id: allTasks.length == 0 ? 1 : allTasks.at(-1).id + 1,
+            id: lastTask ? lastTask.id + 1 : 1,
             title,
             details,
             status: "Pending"
